@@ -77,7 +77,8 @@ export async function fetchOrderInitiations(
     throw new ApiError(
       (body.message as string) || `HTTP ${response.status}`,
       response.status,
-      body.code as string | undefined
+      body.code as string | undefined,
+      typeof body.detail === "string" ? body.detail : undefined
     );
   }
 
@@ -140,7 +141,8 @@ export async function patchOrderIntent(
     throw new ApiError(
       (body.message as string) || `HTTP ${response.status}`,
       response.status,
-      body.code as string | undefined
+      body.code as string | undefined,
+      typeof body.detail === "string" ? body.detail : undefined
     );
   }
   const intent = body.order_intent;

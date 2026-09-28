@@ -249,23 +249,27 @@ export async function fetchDemandBoard(
   if (!response.ok) {
     let message = "Demand board request failed.";
     let code: string | undefined;
+    let detail: string | undefined;
     try {
       const body = (await response.json()) as {
         message?: string;
         code?: string;
+        detail?: string;
       };
       if (body.message) {
         message = body.message;
       }
       code = body.code;
+      detail = body.detail;
     } catch {
       // ignore
     }
-    const err = new ApiError(message, response.status, code);
+    const err = new ApiError(message, response.status, code, detail);
     throw new ApiError(
       formatUserFacingApiError(err, "Could not load the Actions board."),
       response.status,
-      code
+      code,
+      detail
     );
   }
   return (await response.json()) as DemandBoardSnapshot;

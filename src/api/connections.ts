@@ -64,23 +64,27 @@ export async function fetchOrderConnection(
   if (!response.ok) {
     let message = "Could not load connection for this order.";
     let code: string | undefined;
+    let detail: string | undefined;
     try {
       const body = (await response.json()) as {
         message?: string;
         code?: string;
+        detail?: string;
       };
       if (body.message) {
         message = body.message;
       }
       code = body.code;
+      detail = body.detail;
     } catch {
       // ignore
     }
-    const err = new ApiError(message, response.status, code);
+    const err = new ApiError(message, response.status, code, detail);
     throw new ApiError(
       formatUserFacingApiError(err, "Could not load connection for this order."),
       response.status,
-      code
+      code,
+      detail
     );
   }
   const data = (await response.json()) as { connection: OrderConnection };
