@@ -171,7 +171,7 @@ function AppShell() {
     if (isSessionExpired(active)) {
       clearSession();
       setSession(null);
-      setError("Your session expired. Please sign in again.");
+      setError("Your sign-in has expired or is invalid. Please sign out and sign in again.");
       return;
     }
 
