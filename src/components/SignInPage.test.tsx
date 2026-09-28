@@ -1,6 +1,6 @@
 /** @vitest-environment jsdom */
 
-import { cleanup, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { GITHUB_README_URL } from "../docsLinks";
 import { SignInPage } from "./SignInPage";
@@ -35,7 +35,7 @@ describe("SignInPage", () => {
     cleanup();
   });
 
-  it("shows Google sign-in, README link, and Help", async () => {
+  it("shows Google sign-in, README link, and Help", () => {
     render(<SignInPage config={baseConfig} onSignedIn={vi.fn()} />);
 
     expect(screen.getByRole("button", { name: /sign in with google/i })).toBeTruthy();
@@ -46,12 +46,12 @@ describe("SignInPage", () => {
     const readme = screen.getByRole("link", { name: /read the github readme/i });
     expect(readme.getAttribute("href")).toBe(GITHUB_README_URL);
 
-    screen.getByRole("button", { name: /^help$/i }).click();
+    fireEvent.click(screen.getByRole("button", { name: /^help$/i }));
     expect(
       screen.getByRole("heading", { name: /how sharingbridge works/i })
     ).toBeTruthy();
 
-    await screen.getByRole("button", { name: /sign in with google/i }).click();
+    fireEvent.click(screen.getByRole("button", { name: /sign in with google/i }));
     expect(pickGoogleAccount).toHaveBeenCalledWith({ prompt: "select_account" });
   });
 });
