@@ -6,6 +6,7 @@ import { getAppConfig } from "../config";
 import { CONNECTION_SAFETY_COPY } from "../connectionCopy";
 import { formatUserFacingApiError } from "../apiUserMessage";
 import { isSessionExpired } from "../authSession";
+import { formatCatalogPrice } from "../formatCatalogPrice";
 import { CollapsiblePanel } from "./CollapsiblePanel";
 import {
   orderContactsArrivalSignature,
@@ -204,7 +205,10 @@ export function ConnectionLookupPanel({
                         ? ` · ${connection.meal_units} meal unit${connection.meal_units === 1 ? "" : "s"}`
                         : ""}
                       {connection.price_inr != null
-                        ? ` · ₹${connection.price_inr}`
+                        ? ` · ${formatCatalogPrice(
+                            connection.price_inr,
+                            connection.currency
+                          )}`
                         : ""}
                     </p>
                     {ctx.area ? (

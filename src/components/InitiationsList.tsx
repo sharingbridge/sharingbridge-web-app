@@ -1,4 +1,5 @@
 import { formatWhen } from "../format";
+import { formatCatalogPrice } from "../formatCatalogPrice";
 import {
   initiationSelectionId,
   type InitiationFeedItem
@@ -121,7 +122,9 @@ export function InitiationsList({
             >
               <span className="initiation-kind-chip">{routeLabel}</span>
               <strong>{demand.menu_label ?? demand.need_description}</strong>
-              {demand.price_inr != null ? ` · ₹${demand.price_inr}` : ""}
+              {demand.price_inr != null
+                ? ` · ${formatCatalogPrice(demand.price_inr, demand.currency)}`
+                : ""}
               <span className="intent-meta">
                 {demand.meal_units} unit{demand.meal_units === 1 ? "" : "s"}
                 {demand.locality_key ? ` · ${demand.locality_key}` : ""}

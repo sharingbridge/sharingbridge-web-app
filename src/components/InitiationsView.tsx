@@ -5,6 +5,7 @@ import type { FeedScope } from "../feedScope";
 import { initiatorEmptyListMessage } from "../feedScope";
 import type { InitiationFeedItem } from "../initiationFeed";
 import { initiationApiRouteLabel } from "../initiationLabels";
+import { formatCatalogPrice } from "../formatCatalogPrice";
 import type { OrderInitiation } from "../types";
 import type { SeekerDemandRow } from "../api/demandBoard";
 import { isConnectionOrderInProgress } from "../connectionOrderProgress";
@@ -126,7 +127,10 @@ export function InitiationsView({
                 {selectedMealNeed.menu_label ?? selectedMealNeed.need_description}
               </strong>
               {selectedMealNeed.price_inr != null
-                ? ` · ₹${selectedMealNeed.price_inr}`
+                ? ` · ${formatCatalogPrice(
+                    selectedMealNeed.price_inr,
+                    selectedMealNeed.currency
+                  )}`
                 : ""}
             </p>
             <p className="intent-metrics">

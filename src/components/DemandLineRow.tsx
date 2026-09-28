@@ -1,5 +1,6 @@
 import { demandLineKey, type DemandWindowRow } from "../api/demandBoard";
 import type { AllocationHint } from "../api/demandBoard";
+import { formatCatalogPrice } from "../formatCatalogPrice";
 
 export type DemandLineDraft = {
   pledgeUnits: string;
@@ -65,7 +66,9 @@ export function DemandLineRow({
           onClick={onSelectDetail}
         >
           <strong>{row.menu_label ?? row.standard_offer_id ?? "Item"}</strong>
-          {row.price_inr != null ? ` (₹${row.price_inr})` : ""}
+          {row.price_inr != null
+            ? ` (${formatCatalogPrice(row.price_inr, row.currency)})`
+            : ""}
           <span className="intent-meta">
             @ {row.locality_key} · demand {row.meal_units_total} · pledged{" "}
             {row.pledged_units_total ?? 0} · committed{" "}

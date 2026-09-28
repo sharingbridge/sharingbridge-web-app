@@ -15,6 +15,7 @@ export type DemandWindowRow = {
   standard_offer_id?: string | null;
   menu_label?: string;
   price_inr?: number | null;
+  currency?: string | null;
   demand_count: number;
   meal_units_total: number;
   latest_at: string;
@@ -30,6 +31,7 @@ export type StandardOfferRow = {
   locality_key: string;
   menu_label: string;
   price_inr?: number | null;
+  currency?: string | null;
   created_at: string;
   updated_at: string;
 };
@@ -44,6 +46,7 @@ export type SeekerDemandRow = {
   standard_offer_id?: string | null;
   menu_label?: string;
   price_inr?: number | null;
+  currency?: string | null;
   need_description: string;
   verbal_notes?: string;
   location_lat?: number | null;
@@ -99,6 +102,7 @@ export type DemandBoardSnapshot = {
     standard_offer_id: string | null;
     menu_label?: string;
     price_inr?: number | null;
+    currency?: string | null;
   }>;
   active_locality_keys?: string[];
   seeker_demands: SeekerDemandRow[];

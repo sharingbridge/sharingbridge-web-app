@@ -19,6 +19,8 @@ export type OrderConnection = {
   menu_label: string;
   meal_units: number | null;
   price_inr: number | null;
+  /** ISO 4217; amount is `price_inr` (historical column name). */
+  currency?: string | null;
   locality_key: string;
   seeker_demand_id: string | null;
   demand?: {
