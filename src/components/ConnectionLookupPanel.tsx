@@ -63,7 +63,7 @@ export function ConnectionLookupPanel({
         return;
       }
       if (isSessionExpired(session)) {
-        setError("Your sign-in has expired. Please sign out and sign in again.");
+        setError("Your sign-in has expired or is invalid. Please sign out and sign in again.");
         onSessionInvalid?.();
         return;
       }

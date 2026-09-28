@@ -208,7 +208,7 @@ function AppShell() {
       if (err instanceof ApiError && err.status === 401) {
         clearSession();
         setSession(null);
-        setError("Session expired or invalid. Please sign in again.");
+        setError("Your sign-in has expired or is invalid. Please sign out and sign in again.");
         return;
       }
       if (err instanceof ApiError) {
@@ -261,7 +261,7 @@ function AppShell() {
     setSession(null);
     setIntents([]);
     setSelectedKey(null);
-    setError("Your sign-in has expired. Please sign in again.");
+    setError("Your sign-in has expired or is invalid. Please sign out and sign in again.");
   }, []);
 
   const handleApplyCoordinatorScope = useCallback(async () => {

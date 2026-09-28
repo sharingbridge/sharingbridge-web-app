@@ -113,7 +113,7 @@ export function DemandBoardPanel({
   const load = useCallback(async () => {
     const activeSession = sessionRef.current;
     if (isSessionExpired(activeSession)) {
-      setError("Your sign-in has expired. Please sign out and sign in again.");
+      setError("Your sign-in has expired or is invalid. Please sign out and sign in again.");
       onSessionInvalidRef.current?.();
       return;
     }

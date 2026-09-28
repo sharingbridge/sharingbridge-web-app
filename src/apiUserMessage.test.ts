@@ -10,7 +10,7 @@ describe("formatUserFacingApiError", () => {
       "missing_auth_context"
     );
     expect(formatUserFacingApiError(err)).toBe(
-      "Your sign-in has expired. Please sign out and sign in again."
+      "Your sign-in has expired or is invalid. Please sign out and sign in again."
     );
   });
 
